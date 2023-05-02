@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.mycompany.progpoe.LoginTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 27.687 s <<< FAILURE! - in com.mycompany.progpoe.LoginTest
+testReturnLoginStatus  Time elapsed: 27.67 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <> but was: <Welcome Cam Tot it is great to see you again!>
+	at com.mycompany.progpoe.LoginTest.testReturnLoginStatus(LoginTest.java:71)
+

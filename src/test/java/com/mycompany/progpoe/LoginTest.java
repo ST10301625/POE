@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 package com.mycompany.progpoe;
-
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,8 +53,9 @@ public class LoginTest {
         System.out.println("loginUser");
         Login instance = new Login();
         boolean expResult = false;
-        boolean result = instance.loginUser();
-        assertEquals(expResult, result);
+        boolean result ;
+       // result = instance.loginUser(inputUsername, inputPassword);
+       // assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

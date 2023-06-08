@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.mycompany.progpoe.TaskTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 56.259 s <<< FAILURE! - in com.mycompany.progpoe.TaskTest
+testAddTaskDetails  Time elapsed: 56.236 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at com.mycompany.progpoe.TaskTest.testAddTaskDetails(TaskTest.java:29)
+

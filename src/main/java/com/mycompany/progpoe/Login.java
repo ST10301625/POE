@@ -3,104 +3,129 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.progpoe;
-
 import javax.swing.JOptionPane;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField ;
+import javax.swing.JTextField ; 
+
 
 public class Login {
-    /////////////// Declaration of variables //////////////////
-    private final String username;
-    private final String password;
-    private final String firstName;
-    private final String lastName;
-    private final boolean isUsernameValid;
-    private final boolean isPasswordValid;
+    /////// Variable Declaration ////// 
+     String username;
+     String password;
+     String firstName;
+     String lastName ;
+     String inputUsername = "" ;
+     String inputPassword = "" ;
+     boolean isUsernameValid;
+     
     /////////////// Declaration of Constants  //////////////////
-    private final String PASSWORD_VALID_MESSAGE = "Password successfully captured";
-    private final String PASSWORD_INVALID_MESSAGE = "Password is not correctly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character";
-    private final String USERNAME_INVALID_MESSAGE = "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length.";
-    private final String USERNAME_VALID_MESSAGE = "Username successfully captured";
+     String PASSWORD_VALID_MESSAGE = "Password successfully captured";
+     String PASSWORD_INVALID_MESSAGE = "Password is not correctly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character";
+     String USERNAME_INVALID_MESSAGE = "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length.";
+     String USERNAME_VALID_MESSAGE = "Username successfully captured";
 
-    private final int PASSWORD_LENGTH = 8;
-
-    public Login() {
-        /////////////// Prompts to obtain users Information //////////////////
-        firstName = JOptionPane.showInputDialog(null, "Enter first name:");
-        lastName = JOptionPane.showInputDialog(null, "Enter last name:");
-        username = JOptionPane.showInputDialog(null, "Enter username:");
-        isUsernameValid = checkUsername(username); /////////// Check done to see if the username is in the correct format
-
-        password = JOptionPane.showInputDialog(null, "Enter password:");
-        isPasswordValid = checkPasswordComplexity(password); //////////////// Check to see if password follows the correct criteria
-
-        if (isUsernameValid && isPasswordValid) {
-            JOptionPane.showMessageDialog(null, "Account created successfully."); 
-        }
-    }
- /////////////// Method to check username against the requirements//////////////////
-    public final boolean checkUsername(String username) {
+     int PASSWORD_LENGTH = 8;
+   /////// Prompts user to enter their full name //////   
+   public void askDetails(){
+     firstName = JOptionPane.showInputDialog(null,"Enter frist name");
+     lastName = JOptionPane.showInputDialog(null,"Enter surname");
+   }
+  /////// Check done to see if username contains the correct criteria////// 
+    public boolean checkUsername(String username) {
         if (username.contains("_") && username.length() <= 5) {  //////// Checks if username contains an underscore and is less than or equal o 5 digits
-            JOptionPane.showMessageDialog(null, USERNAME_VALID_MESSAGE);
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, USERNAME_INVALID_MESSAGE);
+           
             return false;
         }
+        
     }
- /////////////// Method to check the password against the requirements //////////////////
-    public final boolean checkPasswordComplexity(String password) {
-        String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?"; /////// Declaration of special characters
-        boolean hasUppercase = false;
-        boolean hasLowercase = false;
-        boolean hasNumber = false;
-        boolean hasSpecialChar = false;
-
-        if (password.length() >= PASSWORD_LENGTH) {
-            for (char cCheck : password.toCharArray()) {
-                if (Character.isUpperCase(cCheck)) { /// Checking if the password contains a letter of uppercase
-                    hasUppercase = true; 
-                } else if (Character.isLowerCase(cCheck)) { /// Checks if the password contains 
-                    hasLowercase = true;
-                } else if (Character.isDigit(cCheck)) { /// /// Checks if the password contains a number
-                    hasNumber = true;
-                } else if (specialChars.contains(Character.toString(cCheck))) { /// Checks if the password contains a special character
-                    hasSpecialChar = true;
-                }
+    /////////////// Method to check the password against the requirements //////////////////
+    public boolean checkPasswordComplexity(String password) {
+     String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
+        if (password.length()>= 8 && password.matches(specialChars)) {
+            return true;
+            
+        } else {
+            return false ;
+        }
+    }
+    /////////////// Method displaying the correct error messaging when a user enters their credentials//////////////////
+    public boolean loginUser(String inputUsername, String inputPassword) { 
+        if (username.equals(inputUsername)&& username.equals(inputPassword)) {
+            return true; 
+            
+        } else {
+            return false ;
+        }
+        
+  
+       
+    }
+    /////// Registering user if the requirements have been met////// 
+    public void RegisterUser(){
+        while (true) {            
+         username = JOptionPane.showInputDialog(null,"Enter Username: ") ; 
+            if (checkUsername(username)) {
+                JOptionPane.showMessageDialog(null,USERNAME_VALID_MESSAGE );
+                break;
+                
+            } else {
+                JOptionPane.showMessageDialog(null, USERNAME_INVALID_MESSAGE);
+                continue;
             }
         }
-
-        if (hasUppercase && hasLowercase && hasNumber && hasSpecialChar) {   /// if password meets/does not the requirements, the appropriate error message will be shown
-            JOptionPane.showMessageDialog(null, PASSWORD_VALID_MESSAGE);
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, PASSWORD_INVALID_MESSAGE);
-            return false;
+        while (true) {
+        password = JOptionPane.showInputDialog(null,"Enter Password: ");
+            if (!checkPasswordComplexity(password)) {
+                JOptionPane.showMessageDialog(null, PASSWORD_VALID_MESSAGE);
+                break;
+                
+            } else {
+                JOptionPane.showMessageDialog(null, PASSWORD_INVALID_MESSAGE);
+                continue;
+                
+            }
+        }            
+            
         }
-    }
- /////////////// Method displaying the correct error messaging when a user enters their credentials//////////////////
-    public boolean loginUser() { 
-       
-        String inputUsername = JOptionPane.showInputDialog(null, "Enter username:");
-        String inputPassword = JOptionPane.showInputDialog(null, "Enter password:");
-
-        if (inputUsername.equals(username) && inputPassword.equals(password)) {  ///Checks to see if the username entered matches as well as the password
-            JOptionPane.showMessageDialog(null, "Welcome " + firstName + " " + lastName + "! It's good to see you again.");
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect username or password."); /// error message
-            return false;
-        }
-    }
-   /////////////// Method to return if a users log in was successful or not //////////////////  
+    /////////////// Method to return if a users log in was successful or not //////////////////  
     public String returnLoginStatus() {
-        String inputUsername = JOptionPane.showInputDialog(null, "Enter username:");
-        String inputPassword = JOptionPane.showInputDialog(null, "Enter password:");
-
-        if (inputUsername.equals(username) && inputPassword.equals(password)) {
-            return "Welcome " + firstName + " " + lastName + " it is great to see you again!" ;
-        }
-        return "Username or Password does not match";
-        }
+        JPanel u = new JPanel(new GridLayout(0,1));
+        u.add(new JLabel("Username: ")) ;
+        JTextField f = new JTextField();
+        u.add(f);
+        u.add(new JLabel("Password: "));
+        JPasswordField pf = new JPasswordField();
+        u.add(pf) ;
+        
+        while (true) { 
+            int LoginResult = JOptionPane.showConfirmDialog(null,u,"Login",JOptionPane.OK_CANCEL_OPTION,JOptionPane.OK_OPTION);
+            if (LoginResult == JOptionPane.OK_OPTION) {
+                String inputUsername = f.getText();
+                String inputPassword = new String(pf.getPassword());
+                if (!loginUser(inputUsername, inputPassword)) {
+                   JOptionPane.showMessageDialog(null, "Welcome, it is great to see you again" );
+                   break;
+                } else {
+                    JOptionPane.showMessageDialog(null,"Username or password incorrect, please try again");
+                }
+            }else{
+                        break;
+                        }
+            }
+return null;
+    }
 }
+                     
+            
+    
+          
+                
+
         
     
 

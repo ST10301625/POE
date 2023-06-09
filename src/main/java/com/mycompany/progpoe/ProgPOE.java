@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.progpoe;
-import javax.swing.JOptionPane;
+
 
 
 /**
@@ -25,9 +25,9 @@ public class ProgPOE {
   /////////////// Part 2 //////////////////       
        Task t = new Task();
        int numTasks = 0;
-        t.addTaskDetails(numTasks);
-
-        
+       t.addTaskDetails(numTasks);
+     
+     
       
        
        

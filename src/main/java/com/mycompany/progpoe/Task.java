@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 class Task { 
 ////// ctrl + shift + u = unit test //////    
 /////// Variable Declaration //////    
-
     private static int taskCount = 0;
     private int taskId;
     private String taskName;
@@ -20,8 +19,8 @@ class Task {
     private int tasksTally;
     private int totalHours;
 
-    public Task() { 
-        /////// Switch Statement to prompt a user for what option they want to pick////// 
+    public Task() {
+         /////// Switch Statement to prompt a user for what option they want to pick////// 
         JOptionPane.showMessageDialog(null, "Welcome to EasyKanban");
         int choice = 0;
 
@@ -34,7 +33,7 @@ class Task {
                 input = JOptionPane.showInputDialog(
                         "Menu:\nOption 1) Add tasks\nOption 2) Show report\nOption 3) Quit\nEnter your choice:");
             }
-           /////// Converting the input to an integer ////// 
+/////// Converting the input to an integer ////// 
             choice = Integer.parseInt(input);
 
             switch (choice) {
@@ -55,20 +54,26 @@ class Task {
     }
 
     private void Quit() {
-        /////// The message that will be outputted if a user chooses option 3 ////// 
+        /////// The message that will be outputted if a user chooses option 3 //////
         JOptionPane.showMessageDialog(null, "Thank you for using the Kanban App!");
-       
     }
 
     private int UserInput() {
-        /////// Prompting the user to enter the amount of tasks they want to add ////// 
+       /////// Prompting user to enter all the relevant information regarding the tasks //////  
+        while (true) {
         String input = JOptionPane.showInputDialog("Enter the number of tasks:");
-        int numTasks = Integer.parseInt(input);
-        return numTasks;
+        try {
+            int numTasks = Integer.parseInt(input);
+            return numTasks;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+        }
+    }
     }
 
     public void addTaskDetails(int numTasks) {
-        /////// Prompting user to enter all the relevant information regarding the tasks ////// 
+        
+        
         totalHours = 0;
         for (int i = 1; i <= numTasks; i++) {
             String taskName = getNonEmptyInput("Enter the name for task " + i + ":");
@@ -89,7 +94,7 @@ class Task {
     }
 
     private String getNonEmptyInput(String message) {
-        /////// Check preformed to see if an input is null, and if true, an error message occurs ////// 
+         /////// Check preformed to see if an input is null, and if true, an error message occurs ////// 
         String input = JOptionPane.showInputDialog(message);
         while (input.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Input cannot be empty.");
@@ -99,10 +104,17 @@ class Task {
     }
 
     private int getTaskDuration(int taskNumber) {
-        /////// Calculation of the total duration of the tasks////// 
+        /////// Calculation of the total duration of the tasks//////
+         while (true) {
         String input = getNonEmptyInput("Enter the duration (in hours) for task " + taskNumber + ":");
-        int taskDuration = Integer.parseInt(input);
-        return taskDuration;
+        try {
+            int taskDuration = Integer.parseInt(input);
+            return taskDuration;
+        } catch (NumberFormatException e) {
+            ////// If the input is not a number, an error message occurs//////
+            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+        }
+    }
     }
 
     private String getTaskStatus(int taskNumber) {
@@ -127,22 +139,24 @@ class Task {
     }
 
     private void ShowReport() {
-        /////// Message displayed if option 2 is chosen from the case statement ////// 
-        JOptionPane.showMessageDialog(null,"Coming soon");
+        /////// Message displayed if option 2 is chosen from the case statement //////
+        JOptionPane.showMessageDialog(null, "Coming soon");
     }
 
     public boolean CheckTaskDescription(String taskDesc) {
-        /////// Checks the length of the class description////// 
+        /////// Checks the length of the class description//////
         return taskDesc.length() > 50;
     }
-       /////// The output of all information relevant to each task////// 
+
     public void printTaskDetails(String taskName, String taskDesc, int taskDuration, String developerFullName, String taskStatus) {
+        /////// The output of all information relevant to each task////// 
         JOptionPane.showMessageDialog(null, "Task Details:\n" +
                 "Task Name: " + taskName + "\n" +
                 "Task Description: " + taskDesc + "\n" +
                 "Task Duration: " + taskDuration + " hours\n" +
                 "Developer: " + developerFullName + "\n" +
                 "Task Status: " + taskStatus);
+        JOptionPane.showMessageDialog(null, "Total hours of all tasks: " + returnTotalHours());
     }
 
     public int returnTotalHours() {
@@ -151,10 +165,5 @@ class Task {
 }
 
 
-    
-    
-        
-    
 
-    
 

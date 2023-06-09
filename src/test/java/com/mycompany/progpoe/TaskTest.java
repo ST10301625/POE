@@ -53,7 +53,8 @@ public class TaskTest {
         String taskName = "Log-in feature";
         String taskDesc = "Create Login to authenticate users";
         int taskDuration = 8;
-        String developerFullName = "Robyn Harrison";
+        String developerFullName = "Robyn Harrison"
+                + "";
         String taskStatus = "To Do";
         Task instance = new Task();
         instance.printTaskDetails(taskName, taskDesc, taskDuration, developerFullName, taskStatus);

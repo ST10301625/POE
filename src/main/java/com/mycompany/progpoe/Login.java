@@ -80,6 +80,9 @@ public class Login {
         }
         while (true) {
         password = JOptionPane.showInputDialog(null,"Enter Password: ");
+        //////////// Cause of all my stress ///////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
             if (!checkPasswordComplexity(password)) {
                 JOptionPane.showMessageDialog(null, PASSWORD_VALID_MESSAGE);
                 break;
